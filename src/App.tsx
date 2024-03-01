@@ -10,7 +10,15 @@ const App: Component = () => {
         <div class={css({ fontSize: "2xl", fontWeight: "bold" })}>
           Hello 🐼!
         </div>
-        <Button>Click me</Button>
+        <div class={css({ display: "flex", alignItems: "center", gap: "2" })}>
+          <Button size="sm" colorPalette="orange">
+            Click me
+          </Button>
+          <Button colorPalette="red">Click me</Button>
+          <Button colorPalette="blue" size="lg">
+            Click me
+          </Button>
+        </div>
       </header>
     </div>
   );

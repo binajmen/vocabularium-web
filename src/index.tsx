@@ -1,8 +1,11 @@
 /* @refresh reload */
+import { attachDevtoolsOverlay } from "@solid-devtools/overlay";
 import "solid-devtools";
 import { render } from "solid-js/web";
 import App from "./App";
 import "./index.css";
+
+attachDevtoolsOverlay();
 
 const root = document.getElementById("root");
 

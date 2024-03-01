@@ -23,7 +23,9 @@
     "vite-tsconfig-paths": "^4.3.1"
   },
   "dependencies": {
+    "@kobalte/core": "^0.12.2",
     "@solid-devtools/overlay": "^0.29.3",
+    "@solidjs/router": "^0.12.4",
     "solid-js": "^1.8.15"
   }
 }

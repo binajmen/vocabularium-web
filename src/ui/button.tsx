@@ -1,9 +1,10 @@
-import { styled } from "~/styled-system/jsx";
-import { cva } from "~/styled-system/css/cva";
+import { Button as KButton } from "@kobalte/core";
+import { RecipeVariantProps, css, cva } from "~/styled-system/css";
+import { HTMLStyledProps, splitCssProps } from "~/styled-system/jsx";
+import { OmittedHTMLProps } from "~/styled-system/types";
 
 const buttonStyle = cva({
   base: {
-    colorPalette: "blue",
     display: "inline-flex",
     alignItems: "center",
     rounded: "md",
@@ -29,10 +30,31 @@ const buttonStyle = cva({
       md: { rowGap: "1.5", paddingY: "2", paddingX: "3" },
       lg: { rowGap: "2", paddingY: "2.5", paddingX: "3.5" },
     },
+    color: {
+      blue: { colorPalette: "blue" },
+      red: { colorPalette: "red" },
+    },
   },
   defaultVariants: {
     size: "md",
+    color: "blue",
   },
 });
 
-export const Button = styled("button", buttonStyle);
+export type ButtonVariants = RecipeVariantProps<typeof buttonStyle>;
+
+export const Button = (
+  props: ButtonVariants &
+    Omit<HTMLStyledProps<typeof KButton.Root>, OmittedHTMLProps>,
+) => {
+  const [variants, otherProps] = buttonStyle.splitVariantProps(props);
+  const [cssProps, restProps] = splitCssProps(otherProps);
+  const { css: cssProp, ...styleProps } = cssProps;
+
+  return (
+    <KButton.Root
+      {...restProps}
+      class={css(buttonStyle.raw(variants), styleProps, cssProp)}
+    />
+  );
+};
